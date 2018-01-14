@@ -24,6 +24,10 @@ msgctxt "#30003"
 msgid " Login: Password"
 msgstr " Login: Passwort"
 
+msgctxt "#30004"
+msgid "Please sign in using your account details. Go to www.eurosportplayer.com on another device to retrieve your forgotten email or password."
+msgstr "Melde dich mit deinen Kontodetails an. Besuche www.eurosportplayer.com von einem anderen Gerät aus, um deine vergessene E-Mail-Adresse oder dein Passwort zu erhalten."
+
 msgctxt "#30010"
 msgid "View"
 msgstr "Ansicht"

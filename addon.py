@@ -45,6 +45,8 @@ def router(paramstring):
             parser.play(client.streams(id_))
     elif mode == 'license_renewal':
         parser.license_renewal(client.license_key())
+    elif mode == 'is_settings':
+        plugin.open_is_settings()
 
 if __name__ == '__main__':
     if plugin.startup:

@@ -76,7 +76,7 @@ class Common:
         return None
 
     def log(self, msg):
-        xbmc.log(str(msg), xbmc.LOGNOTICE)
+        xbmc.log(str(msg), xbmc.LOGDEBUG)
 
     def build_url(self, query):
         return self.addon_url + '?' + urllib.urlencode(query)

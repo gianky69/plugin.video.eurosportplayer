@@ -171,3 +171,5 @@ class Client:
         if code:
             self.user_settings(self.authorization(grant_type='urn:mlbam:params:oauth:grant_type:token', token=code))
             self.profile()
+        else:
+            self.plugin.dialog_ok(30004)
