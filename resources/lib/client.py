@@ -91,7 +91,7 @@ class Client:
         }
         data = requests.get(url.format(scenario='browser'), headers=headers).json()
         if data.get('errors', ''):
-            self.plugin.log('[{0}] {1}'.format(self.plugin.addon_id, utfenc(data['errors'][0][:100])))
+            self.plugin.log('[{0}] {1}'.format(self.plugin.addon_id, self.plugin.utfenc(data['errors'][0][:100])))
         data['license_key'] = self.license_key()
         return data
     

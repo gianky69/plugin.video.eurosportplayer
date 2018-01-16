@@ -11,6 +11,7 @@
         <news>
 - code improvement
 - removed pydes as dependency (user credentials will not be saved)
+- removed inputstream dependency, added inputstreamhelper as dependency
 - unique id check only once at addon startup
 - added screenshots
         </news>
