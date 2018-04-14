@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.eurosportplayer" version="2.0.7" name="Eurosport Player" provider-name="Jin">
+<addon id="plugin.video.eurosportplayer" version="2.0.8" name="Eurosport Player" provider-name="Jin">
     <requires>
         <import addon="xbmc.python" version="2.25.0"/>
         <import addon="script.module.inputstreamhelper" version="0.3.3"/>
@@ -9,6 +9,7 @@
     </extension>
     <extension point="xbmc.addon.metadata">
         <news>
+- fix type error in schedule
 - prefer non-linear stream (with timeshift) via schedule
         </news>
         <assets>

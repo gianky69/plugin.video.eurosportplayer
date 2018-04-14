@@ -60,7 +60,7 @@ class Common:
     def get_resource(self, string):
         result = self.utfenc(string)
         id_ = resources(string)
-        if id_ != 0:
+        if isinstance(id_, int) and id_ != 0:
             result = self.get_string(id_)
         return result
 
