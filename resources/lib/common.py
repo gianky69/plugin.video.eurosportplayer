@@ -30,6 +30,8 @@ class Common:
         self.addon_fanart = addon.getAddonInfo('fanart')
         self.content = addon.getSetting('content')
         self.view_id = addon.getSetting('view_id')
+        self.view_id_videos = addon.getSetting('view_id_videos')
+        self.view_id_epg = addon.getSetting('view_id_epg')
         self.force_view = addon.getSetting('force_view') == 'true'
         self.startup = addon.getSetting('startup') == 'true'
 
