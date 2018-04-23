@@ -8,6 +8,7 @@ import uuid
 import xbmc
 import xbmcaddon
 import xbmcgui
+import _strptime
 from inputstreamhelper import Helper
 from resources import resources
 
