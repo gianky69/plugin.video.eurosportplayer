@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 
 import datetime
-import hashlib
+import platform
 import time
 import urllib
-import uuid
 import xbmc
 import xbmcaddon
 import xbmcgui
@@ -35,6 +34,11 @@ class Common:
         self.view_id_epg = addon.getSetting('view_id_epg')
         self.force_view = addon.getSetting('force_view') == 'true'
         self.startup = addon.getSetting('startup') == 'true'
+
+    def device_profile(self):
+        if xbmc.getCondVisibility('system.platform.android'):
+            return 'Android'
+        return platform.system()
 
     def utfenc(self, text):
         result = text
@@ -79,7 +83,7 @@ class Common:
         return None
 
     def log(self, msg):
-        xbmc.log(str(msg), xbmc.LOGDEBUG)
+        xbmc.log(str(msg), xbmc.LOGNOTICE)
 
     def build_url(self, query):
         return self.addon_url + '?' + urllib.urlencode(query)
@@ -105,25 +109,6 @@ class Common:
             epoch = time.mktime(utc.timetuple())
             offset = datetime.datetime.fromtimestamp(epoch) - datetime.datetime.utcfromtimestamp(epoch)
             return (utc + offset).strftime(self.time_format)
-
-    def uniq_id(self):
-        device_id = ''
-        mac_addr = xbmc.getInfoLabel('Network.MacAddress')
-        if not ":" in mac_addr: 
-            mac_addr = xbmc.getInfoLabel('Network.MacAddress')
-        # hack response busy
-        i = 0
-        while not ":" in mac_addr and i < 3:
-            i += 1
-            time.sleep(1)
-            mac_addr = xbmc.getInfoLabel('Network.MacAddress')
-        if ":" in mac_addr:
-            device_id = str(uuid.UUID(hashlib.md5(str(mac_addr.decode("utf-8"))).hexdigest()))
-        else:
-            self.log("[{0}] error: failed to get device id ({1})".format(self.addon_id, str(mac_addr)))
-            self.dialog_ok(30051)
-        self.set_setting('device_id', device_id)
-        return device_id
 
     def open_is_settings(self):
         xbmcaddon.Addon(id='inputstream.adaptive').openSettings()
