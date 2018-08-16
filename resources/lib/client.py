@@ -9,9 +9,9 @@ class Client:
 
         self.API_KEY = '2I84ZDjA2raVJ3hyTdADwdwxgDz7r62J8J0W8bE8N8VVILY446gDlrEB33fqLaXD'
 
-        self.IDENTITY_URL = self.plugin.west_base + 'v2/user/identity'
-        self.USER_URL = self.plugin.west_base + 'v2/user/profile'
-        self.TOKEN_URL = self.plugin.global_base + 'token'
+        self.IDENTITY_URL = self.plugin.bam_base + 'v2/user/identity'
+        self.USER_URL = self.plugin.bam_base + 'v2/user/profile'
+        self.TOKEN_URL = self.plugin.bam_base + 'token'
         self.GRAPHQL_URL = self.plugin.search_base + 'svc/search/v2/graphql'
 
         self.DEVICE_ID = self.plugin.get_setting('device_id')
