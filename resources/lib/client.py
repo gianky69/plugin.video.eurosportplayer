@@ -146,7 +146,7 @@ class Client:
             'authorization': 'Bearer ' + self.API_KEY
         }
         post_data = {
-            'applicationRuntime': self.plugin.addon_id,
+            'applicationRuntime': 'kodi',
             'attributes': {},
             'deviceFamily': 'browser',
             'deviceProfile': self.plugin.device_profile().lower()
