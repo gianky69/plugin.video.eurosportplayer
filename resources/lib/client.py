@@ -186,16 +186,17 @@ class Client:
         if credentials:
             self.user_settings(self.authorization(grant_type='urn:ietf:params:oauth:grant-type:token-exchange', token_type='urn:bamtech:params:oauth:token-type:device'))
             data = self.authentication(credentials)
-            if data.get('message'):
-                msg = self.plugin.utfenc(data['message'][:100])
-            elif data.get('error_description'):
-                msg = self.plugin.utfenc(data['error_description'][:100])
-            else:
-                msg = 'logged in'
+            if data.get('errors'):
+                msg = self.plugin.utfenc(data['errors'][0]['code'])
+            elif data.get('id_token'):
+                msg = 'login successful'
                 code = data['id_token']
+            else:
+                msg = 'login error'
             self.plugin.log('[{0}] {1}'.format(self.plugin.addon_id, msg))
         if code:
             self.user_settings(self.authorization(grant_type='urn:ietf:params:oauth:grant-type:token-exchange', token=self.grant(code), token_type='urn:bamtech:params:oauth:token-type:account'))
             self.profile()
         else:
-            self.plugin.dialog_ok(30004)
+            self.user_settings(data={})
+            self.plugin.dialog_ok(self.plugin.get_string(30004))
