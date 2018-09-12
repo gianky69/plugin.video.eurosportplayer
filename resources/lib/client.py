@@ -91,8 +91,11 @@ class Client:
             'authorization': self.ACCESS_TOKEN
         }
         data = requests.get(url.format(scenario='browser'), headers=headers).json()
-        if data.get('errors', ''):
-            self.plugin.log('[{0}] {1}'.format(self.plugin.addon_id, self.plugin.utfenc(data['errors'][0]['code'][:100])))
+        if data.get('errors'):
+            msg = data['errors'][0]['code']
+            self.plugin.log('[{0}] {1}'.format(self.plugin.addon_id, self.plugin.utfenc(msg)))
+            if msg == 'not-entitled' or msg == 'access-token.invalid':
+                self.profile()
         data['license_key'] = self.license_key()
         return data
     
@@ -176,9 +179,12 @@ class Client:
 
     def profile(self):
         data = self.user()
-        attributes = data['attributes']
-        self.plugin.set_setting('country', attributes['country'])
-        self.plugin.set_setting('language', attributes['language'])
+        if data.get('attributes'):
+            attributes = data['attributes']
+            self.plugin.set_setting('country', attributes['country'])
+            self.plugin.set_setting('language', attributes['language'])
+        elif data.get('errors'):
+            self.login()
 
     def login(self):
         code = None
